@@ -67,7 +67,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     /// Promo Slider
                     TPromoSlider(banners: [TImages.promoBanner1, TImages.promoBanner2, TImages.promoBanner3],),
-                    SizedBox(height: TSizes.spaceBtwSections,),
+                    SizedBox(height: TSizes.spaceBtwSections),
+
+                    /// Heading
+                    TSectionHeading(title: 'Popular Products', onPressed: () {},),
+                    SizedBox(height: TSizes.spaceBtwItems),
 
                     /// Popular Products
                     TGridLayout(itemCount: 2, itemBuilder: (_, index) => const TProductCardVertical()),

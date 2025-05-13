@@ -2,22 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 
 
 class TCartCountericon extends StatelessWidget {
   const TCartCountericon({
-    super.key, required this.onPressed, required this.iconColor,
+    super.key,
+    required this.onPressed,
+    this.iconColor,
   });
 
   final VoidCallback onPressed;
-  final Color iconColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
+
     return Stack(
       children: [
         /// shopping bag/cart icon
-        IconButton(onPressed: (){}, icon: Icon(Iconsax.shopping_bag, color: TColors.white)),
+        IconButton(onPressed: (){}, icon: Icon(Iconsax.shopping_bag,
+          color: dark ? TColors.white : TColors.black
+        )),
         /// the black circle above cart icon to indicate the cart is now not empty
         Positioned(
           right: 0,

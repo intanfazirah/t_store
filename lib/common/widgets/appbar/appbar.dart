@@ -7,12 +7,18 @@ import 'package:t_store/utils/device/device_utility.dart';
 
 class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TAppBar(
-      {super.key, this.title, this.showBackArrow = true, this.leadingIcon, required this.actions, this.leadingOnPressed});
+      {
+        super.key,
+        this.title,
+        this.showBackArrow = true,
+        this.leadingIcon,
+        this.actions,
+        this.leadingOnPressed});
 
   final Widget? title;
   final bool showBackArrow;
   final IconData? leadingIcon;
-  final List<Widget> actions;
+  final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
 
   @override
