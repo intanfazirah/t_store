@@ -15,6 +15,7 @@ import '../../../../common/widgets/custom_shapes/containers/primary_header_conta
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
 import '../../../../common/widgets/images/t_rounded_image.dart';
+import '../../../../common/widgets/layout/grid_layout.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -69,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(height: TSizes.spaceBtwSections,),
 
                     /// Popular Products
-                    TProductCardVertical(),
+                    TGridLayout(itemCount: 2, itemBuilder: (_, index) => const TProductCardVertical()),
                   ],
                 ),
 
