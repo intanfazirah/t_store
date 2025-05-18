@@ -2,21 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/appbar/tabbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:t_store/common/widgets/images/rounded_container.dart';
-import 'package:t_store/common/widgets/images/t_circular_image.dart';
 import 'package:t_store/common/widgets/layout/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
-import 'package:t_store/constants/image_strings.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../../../../common/widgets/brands/brand_cart.dart';
-import '../../../../common/widgets/brands/brand_show_case.dart';
-import '../../../../common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});

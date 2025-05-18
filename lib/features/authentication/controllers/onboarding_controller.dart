@@ -1,10 +1,8 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 
-import '../screens/login/login.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance => Get.find();
