@@ -15,20 +15,18 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TCurvedEdgeWidget(
+
       child: Container(
         color: TColors.primary,
         padding: const EdgeInsets.all(0),
         /// For first container (on top)
-        child: SizedBox(
-          height: 400,
-          child: Stack(
-            children: [
-              /// this is for white circle on the right
-              Positioned(top: -150, right:-250, child: TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1),)),
-              Positioned(top: 100, right:-300, child: TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1),)),
-              child,
-            ],
-          ),
+        child: Stack(
+          children: [
+            /// this is for white circle on the right
+            Positioned(top: -150, right:-250, child: TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1),)),
+            Positioned(top: 100, right:-300, child: TCircularContainer(backgroundColor: TColors.textWhite.withOpacity(0.1),)),
+            child,
+          ],
         ),
       ),
     );
