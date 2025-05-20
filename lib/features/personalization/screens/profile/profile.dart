@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:t_store/common/widgets/appbar/appbar.dart';
+import 'package:t_store/common/widgets/images/t_circular_image.dart';
+import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/constants/image_strings.dart';
+import 'package:t_store/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:t_store/utils/constants/sizes.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /// App bar
+      appBar: TAppBar(
+        showBackArrow: true,
+        title: Text('Profile'),
+      ),
+      /// Body
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(TSizes.defaultSpace),
+          child: Column(
+            children: [
+              /// Profile Picture
+              /// Sized box make the children to the center
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    TCircularImage(image: TImages.user, width: 80, height: 80),
+                    TextButton(onPressed: (){}, child: Text('Change Profile Picture')),
+                  ],
+                ),
+              ),
+
+              /// Details
+              SizedBox(height: TSizes.spaceBtwItems / 2),
+              Divider(),
+              SizedBox(height: TSizes.spaceBtwItems),
+
+              ///Heading Profile Info
+              TSectionHeading(title: 'Profile Information', showActionButton: false,),
+              SizedBox(height: TSizes.spaceBtwItems),
+
+              TProfileMenu(title: 'Name', value: 'Coding with T', onPressed: () {}),
+              TProfileMenu(title: 'Username', value: 'coding_with_t', onPressed: () {}),
+
+              SizedBox(height: TSizes.spaceBtwItems),
+              Divider(),
+              SizedBox(height: TSizes.spaceBtwItems),
+
+              /// Heading Personal Info
+              TSectionHeading(title: 'Personal Information', showActionButton: false,),
+              SizedBox(height: TSizes.spaceBtwItems),
+
+              TProfileMenu(title: 'User ID', value: '45689', icon: Iconsax.copy, onPressed: () {}),
+              TProfileMenu(title: 'Email', value: 'coding_with_t', onPressed: () {}),
+              TProfileMenu(title: 'Phone Number', value: '+123456789', onPressed: () {}),
+              TProfileMenu(title: 'Gender', value: 'Male', onPressed: () {}),
+              TProfileMenu(title: 'Date of Birth', value: '01 Jan 2021', onPressed: () {}),
+              Divider(),
+              SizedBox(height: TSizes.spaceBtwItems),
+
+              Center(
+                child: TextButton(
+                    onPressed: (){},
+                    child: Text('Close Account', style: TextStyle(color: Colors.red)),
+                ),
+              )
+            ],
+          ),
+        ),
+
+      ),
+    );
+  }
+}
