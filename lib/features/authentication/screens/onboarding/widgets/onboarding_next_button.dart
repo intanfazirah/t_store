@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/features/authentication/controllers/onboarding_controller.dart';
+import 'package:t_store/features/authentication/controllers/onboarding_controller/onboarding_controller.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
