@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 
 import '../../../../constants/image_strings.dart';
@@ -22,8 +23,8 @@ class LoginController extends GetxController{
 
   @override
   void onInit() {
-    email.text = localStorage.read('REMEMBER_ME_EMAIL');
-    password.text = localStorage.read('REMEMBER_ME_PASSWORD');
+    email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
+    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ?? '';
     super.onInit();
   }
 
@@ -69,6 +70,37 @@ class LoginController extends GetxController{
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
+
+  /// -- Google SignIn Authentication
+  Future<void> googleSignIn() async{
+    try{
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if(!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Google Authentication
+      final userCredentials = await  AuthenticationRepository.instance.signInWithGoogle();
+
+      // Save User Record
+      await UserController.instance.saveUserRecord(userCredentials);
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Redirect
+      AuthenticationRepository.instance.screenRedirect();
+
+    } catch(e){
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+    }
+  }// google sign in
 
 
 }// end
