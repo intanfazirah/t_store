@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,6 +19,7 @@ class LoginController extends GetxController{
   final localStorage = GetStorage();
   final email = TextEditingController(); // TextEditingController used to control and listen to changes in a TextField or TextFormField.
   final password = TextEditingController();
+  final userController = Get.put(UserController());
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
 
@@ -58,7 +60,7 @@ class LoginController extends GetxController{
       final userCredentials = await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Assign user data to RxUser of UserController to use in app
-      //await userController.fetchUserRecord();
+      await userController.fetchUserRecord();
 
       // Remove Loader
       TFullScreenLoader.stopLoading();
@@ -72,35 +74,34 @@ class LoginController extends GetxController{
   }
 
   /// -- Google SignIn Authentication
-  Future<void> googleSignIn() async{
-    try{
+  Future<void> googleSignIn() async {
+    try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
       // Google Authentication
-      final userCredentials = await  AuthenticationRepository.instance.signInWithGoogle();
+      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
 
-      // Save User Record
-      await UserController.instance.saveUserRecord(userCredentials);
+      // Save Authenticated user data in the Firebase Firestore
+      await userController.saveUserRecord(userCredentials: userCredentials);
 
       // Remove Loader
       TFullScreenLoader.stopLoading();
 
       // Redirect
-      AuthenticationRepository.instance.screenRedirect();
-
-    } catch(e){
+      await AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
-  }// google sign in
+  }
 
 
 }// end

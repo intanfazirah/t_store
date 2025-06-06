@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 
 import '../../../constants/image_strings.dart';
 import '../../../utils/constants/colors.dart';
@@ -16,6 +17,8 @@ class TUserProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
+
     return ListTile(
       leading: TCircularImage(
         image: TImages.user,
@@ -23,8 +26,8 @@ class TUserProfileTile extends StatelessWidget {
         height: 50,
         padding: 0,
       ),
-      title: Text('Coding with T', style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white)),
-      subtitle: Text('support@codingwithT.com', style: Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white)),
+      title: Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white)),
+      subtitle: Text(controller.user.value.email, style: Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white)),
       /// trailing = It represents the widget shown at the end (right side) of the tile (in left-to-right layouts).
       trailing: IconButton(onPressed: onPressed, icon: Icon(Iconsax.edit, color: TColors.white)),
     );
