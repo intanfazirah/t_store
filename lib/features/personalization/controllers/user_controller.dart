@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../common/widgets/loaders/circular_loader.dart';
 import '../../../data/repositories/authentication/authentication_repository.dart';
@@ -95,6 +96,24 @@ class UserController extends GetxController {
   }
 
   /// Upload Profile Picture
+  uploadUserProfilePicture() async{
+    try{
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      if(image != null){
+        // Upload Image
+        final imageUrl = await userRepository.uploadImage('Users/Image/Profile/', image);
+
+        // Update User Image Record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        TLoaders.successSnackBar(title: 'Congratulation', message: 'Your profile image has been updated!');
+      }
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'OhSnap', message: 'Something went wrong: $e');
+    }
+  }
 
   /// Delete Account Warning
   void deleteAccountWarningPopup() {

@@ -46,3 +46,20 @@ android {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    // Firebase App Check
+    implementation 'com.google.firebase:firebase-appcheck:17.0.1'
+
+    // Choose one provider based on your needs:
+
+    // Development only (Debug)
+    implementation 'com.google.firebase:firebase-appcheck-debug:17.0.1'
+
+    // For production (Play Integrity - Recommended)
+    implementation 'com.google.firebase:firebase-appcheck-playintegrity:17.0.1'
+
+    // Or if you support older Android devices
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:17.0.1'
+}
+
