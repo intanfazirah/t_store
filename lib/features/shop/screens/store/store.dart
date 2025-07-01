@@ -14,14 +14,17 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../../../../common/widgets/brands/brand_cart.dart';
+import '../../controllers/category_controller.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.instance.featuredCategories;
+
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: TAppBar(
           title: Text('Store', style: Theme.of(context).textTheme.headlineMedium,),
@@ -63,27 +66,15 @@ class StoreScreen extends StatelessWidget {
               ),
       
               /// Tabs
-              bottom: const TTabBar(
-                  tabs: [
-                    Tab(child: Text('Sports')),
-                    Tab(child: Text('Furniture')),
-                    Tab(child: Text('Electronics')),
-                    Tab(child: Text('Cloths')),
-                    Tab(child: Text('Cosmetics')),
-                  ],
+              bottom: TTabBar(
+                  tabs: categories.map((category) => Tab(child: Text(category.name))).toList()
               ),
             ),
           ];
         },
             /// Body
           body: TabBarView(
-            children: [
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-            ],
+            children: categories.map((category) => TCategoryTab(category: category)).toList()
           ),
         ),
       ),
