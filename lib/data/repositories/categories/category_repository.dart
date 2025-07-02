@@ -34,7 +34,7 @@ class CategoryRepository extends GetxController {
   /// Upload Categories to the Cloud Firebase
   Future<void> uploadDummyData(List<CategoryModel> categories) async {
     try {
-      // Upload all the Categories along with thier Images
+      // Upload all the Categories along with their Images
       final storage = Get.put(TFirebaseStorageService());
 
       // Loop through each category
@@ -59,5 +59,5 @@ class CategoryRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
     }
-  }
+
 }
