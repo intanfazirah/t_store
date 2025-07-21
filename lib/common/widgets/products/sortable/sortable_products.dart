@@ -26,7 +26,7 @@ class TSortableProducts extends StatelessWidget {
         SizedBox(height: TSizes.spaceBtwSections),
 
         /// Products
-        TGridLayout(itemCount: 10, itemBuilder: (_, index) => TProductCardVertical()),
+        //TGridLayout(itemCount: 10, itemBuilder: (_, index) => TProductCardVertical()),
 
       ],
     );

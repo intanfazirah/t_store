@@ -26,7 +26,7 @@ class FavouriteScreen extends StatelessWidget {
             padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              TGridLayout(itemCount: 8, itemBuilder: (_, index) => TProductCardVertical()),
+              //TGridLayout(itemCount: 8, itemBuilder: (_, index) => TProductCardVertical()),
             ],
           ),
         ),

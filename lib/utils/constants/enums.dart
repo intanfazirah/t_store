@@ -10,6 +10,8 @@ enum TextSizes { small, medium, large }
 
 enum OrderStatus { processing, shipped, delivered }
 
+enum ProductType { single, variable }
+
 enum MediaCategory { folders, banners, brands, categories, products, users }
 
 enum PaymentMethods { paypal, googlePay, applePay, visa, masterCard, creditCard, paystack, razorPay, paytm }
